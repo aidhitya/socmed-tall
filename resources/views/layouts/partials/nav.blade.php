@@ -2,7 +2,7 @@
     <div class="flex flex-col justify-between bg-indigo-600 md:bg-transparent md:flex-row md:items-center" x-data="{navbar: false}">
         <div class="flex justify-between w-full px-4 py-4 md:w-auto md:border-b-0">
             <div class="">
-                <a href="#" class="text-xl font-semibold text-white hover:text-indigo-900">{{ config('app.name') }}</a>
+                <a href="{{ route('home') }}" class="text-xl font-semibold text-white hover:text-indigo-900">{{ config('app.name') }}</a>
             </div>
 
             <div class="">
@@ -37,7 +37,7 @@
                         <div x-show="dropdown" class="top-0 right-0 w-full py-2 leading-relaxed bg-indigo-400 border-t border-white md:w-56 md:bg-indigo-300 md:mt-16 md:mr-4 md:rounded-lg md:shadow md:absolute" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90"  stroke-linecap="round">
                             <a href="#" class="block px-4 text-white hover:text-gray-800 focus:outline-none">Profile</a>
                             <a href="#" class="block px-4 text-white hover:text-gray-800 focus:outline-none">Friends</a>
-                            <a href="#" class="block px-4 text-white hover:text-gray-800 focus:outline-none">Settings</a>
+                            <a href="{{ route('setting.edit') }}" class="block px-4 text-white hover:text-gray-800 focus:outline-none">Settings</a>
                             
                             <div class="">
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 font-medium text-white hover:text-gray-800 focus:outline-none">

@@ -46,6 +46,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function gravatar($size = 150)
     {
-        return "https://www.gravatar.com/avatar/" . md5(strtolower(trim($this->email))) . "?s=" . $size;
+        return $this->picture ? asset('storage/'. $this->picture) : "https://www.gravatar.com/avatar/" . md5(strtolower(trim($this->email))) . "?s=" . $size;
     }
 }
