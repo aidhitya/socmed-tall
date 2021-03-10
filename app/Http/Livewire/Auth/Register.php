@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class Register extends Component
 {
@@ -35,6 +36,7 @@ class Register extends Component
             'email' => $this->email,
             'name' => $this->name,
             'password' => Hash::make($this->password),
+            'hash' => Str::random(32),
         ]);
 
         event(new Registered($user));
