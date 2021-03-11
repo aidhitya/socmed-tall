@@ -44,6 +44,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function getUsernameOrHashAttribute()
+    {
+        return $this->username ?? $this->hash;
+    }
+
     public function gravatar($size = 150)
     {
         return $this->picture ? asset('storage/'. $this->picture) : "https://www.gravatar.com/avatar/" . md5(strtolower(trim($this->email))) . "?s=" . $size;
