@@ -1,6 +1,6 @@
 <div class="bg-gray-100">
     <div class="flex justify-center">
-        <div class="flex w-5/12">
+        <div class="flex w-full md:w-5/12">
             <div class="flex-1 py-2 text-center border-r border-gray-300">
                 <div class="text-gray-500">
                     Status
