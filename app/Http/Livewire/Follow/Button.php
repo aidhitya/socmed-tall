@@ -16,12 +16,18 @@ class Button extends Component
 
     public function follow()
     {
-        auth()->user()->follow($this->user);
-    }
+        if (!auth()->check()) {
+           return redirect(route('login'));
+        }
 
+        auth()->user()->follow($this->user);
+        $this->emit('statisticUpdated');
+    }
+    
     public function unfollow()
     {
         auth()->user()->unfollow($this->user);
+        $this->emit('statisticUpdated');
     }
 
     public function render()

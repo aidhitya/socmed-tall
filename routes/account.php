@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('user')->group(function () {
-    Route::get('settings', editProfile::class)->name('setting.edit');
+    Route::get('settings', editProfile::class)->middleware('auth')->name('setting.edit');
     Route::get('{identifier}', showProfile::class)->name('account.profile');
 });
