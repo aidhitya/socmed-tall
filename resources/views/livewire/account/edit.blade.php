@@ -26,10 +26,17 @@
                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
+                    <div class="mb-2">
+                        <label for="description" class="block mb-1 font-medium">Bio</label>
+                        <textarea wire:model="description" id="description" rows="5" class="w-full border-gray-300 rounded @error('description') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror"></textarea>
+                        @error('description')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
                     <div class="mt-5">
-                        <button type="submit" class="flex justify-center px-4 py-2 text-sm font-medium text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring-indigo active:bg-indigo-700">
+                        <x-button.primary>
                             Update
-                        </button>
+                        </x-button.primary>
                     </div>
                 </form>
             </div>

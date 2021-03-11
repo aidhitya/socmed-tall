@@ -23,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'hash',
         'username',
         'picture',
+        'description'
     ];
 
     /**
@@ -52,5 +53,25 @@ class User extends Authenticatable implements MustVerifyEmail
     public function gravatar($size = 150)
     {
         return $this->picture ? asset('storage/'. $this->picture) : "https://www.gravatar.com/avatar/" . md5(strtolower(trim($this->email))) . "?s=" . $size;
+    }
+
+    public function follow(User $user)
+    {
+        return $this->follows()->attach($user);
+    }
+
+    public function unfollow(User $user)
+    {
+        return $this->follows()->detach($user);
+    }
+
+    public function following(User $user)
+    {
+        return $this->follows()->find($user);
+    }
+
+    public function follows()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id')->withTimestamps();
     }
 }

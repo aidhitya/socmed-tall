@@ -11,7 +11,7 @@ class Edit extends Component
 {
     use WithFileUploads;
 
-    public $name, $username, $picture;
+    public $name, $username, $picture, $description;
     
     /**
      * mount
@@ -22,6 +22,7 @@ class Edit extends Component
     {
         $this->name = auth()->user()->name;
         $this->username = auth()->user()->username;
+        $this->description = auth()->user()->description;
     }
     
     /**
@@ -35,6 +36,7 @@ class Edit extends Component
             'name' => 'required|min:3|string',
             'username' => 'required|min:3|max:25|string|unique:users,username,' . auth()->id(),
             'picture' => $this->picture ? 'image|mimes:jpg,jpeg,png|max:1024' : '',
+            'description' => 'string',
         ];
     }
 
@@ -43,7 +45,8 @@ class Edit extends Component
         $this->validateOnly($fieldName,[
             'name' => 'min:3|string',
             'username' => 'required|min:3|max:25|string|unique:users,username,' . auth()->id(),
-            'picture' => 'image|mimes:jpg,jpeg,png|max:1024'
+            'picture' => 'image|mimes:jpg,jpeg,png|max:1024',
+            'description' => 'string',
         ]);
     }
     
@@ -68,7 +71,8 @@ class Edit extends Component
         auth()->user()->update([
             'name' => $this->name,
             'username' => $this->username,
-            'picture' => $picture
+            'picture' => $picture,
+            'description' => $this->description,
         ]);
 
          return redirect(route('setting.edit'));

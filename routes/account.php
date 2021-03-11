@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\Account\AccountController;
 use App\Http\Livewire\Account\Edit as editProfile;
-use Illuminate\Http\Request;
+use App\Http\Livewire\Account\Show as showProfile;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('user')->group(function () {
     Route::get('settings', editProfile::class)->name('setting.edit');
+    Route::get('{identifier}', showProfile::class)->name('account.profile');
 });
