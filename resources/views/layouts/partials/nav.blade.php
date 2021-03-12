@@ -17,8 +17,8 @@
 
         <div :class="{'hidden': !navbar}" class="absolute justify-between hidden w-full leading-loose bg-indigo-400 md:visible md:border-t-0 md:relative mt-14 md:mt-0 md:flex">
             <div class="flex flex-col md:items-center md:flex-row">
+                <a href="{{ route('timeline') }}" class="block px-4 font-medium text-white hover:text-gray-800 focus:outline-none md:py-3">Timeline</a>
                 <a href="#" class="block px-4 font-medium text-white hover:text-gray-800 focus:outline-none md:py-3">Explore</a>
-                <a href="#" class="block px-4 font-medium text-white hover:text-gray-800 focus:outline-none md:py-3">Timeline</a>
             </div>
 
             <div class="flex flex-col md:items-center md:flex-row">

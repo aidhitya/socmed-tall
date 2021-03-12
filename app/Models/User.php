@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Timeline\Statuses;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -70,6 +71,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->follows()->find($user);
     }
 
+    // <!-- Relationship -->
+
     public function follows()
     {
         return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id')->withTimestamps();
@@ -78,5 +81,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function followers()
     {
         return $this->belongsToMany(User::class, 'follows', 'following_user_id', 'user_id');
+    }
+
+    public function statuses()
+    {
+        return $this->hasMany(Statuses::class);
     }
 }

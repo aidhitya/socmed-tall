@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TimelineController;
 use App\Http\Livewire\Account\Edit as editProfile;
 use App\Http\Livewire\Account\Show as showProfile;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('user')->group(function () {
-    Route::get('settings', editProfile::class)->middleware('auth')->name('setting.edit');
+    Route::middleware('auth')->group(function () {
+        Route::get('timeline', TimelineController::class)->name('timeline');
+        Route::get('settings', editProfile::class)->name('setting.edit');
+    });
     Route::get('{identifier}', showProfile::class)->name('account.profile');
 });
