@@ -2,18 +2,18 @@
 
 namespace Database\Factories\Timeline;
 
-use App\Models\Timeline\Statuses;
+use App\Models\Timeline\Status;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class StatusesFactory extends Factory
+class StatusFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Statuses::class;
+    protected $model = Status::class;
 
     /**
      * Define the model's default state.
@@ -23,7 +23,7 @@ class StatusesFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => rand(1,9),
+            'user_id' => rand(1,2),
             'hash' => Str::random(32),
             'body' => $this->faker->sentence()
         ];

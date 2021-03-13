@@ -2,12 +2,18 @@
 
 namespace App\Http\Livewire\Account;
 
+use App\Models\Timeline\Status;
 use App\Models\User;
 use Livewire\Component;
 
 class Show extends Component
 {
-    public $user;
+    public $user, $page = 10;
+
+    public function loadMore()
+    {
+        $this->page += 15;
+    }
 
     public function mount($identifier)
     {
@@ -16,6 +22,9 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.account.show');
+        $statuses = Status::where('user_id', $this->user->id)->with('user')->latest()->paginate($this->page);
+        return view('livewire.account.show',[
+            'statuses' => $statuses
+        ]);
     }
 }

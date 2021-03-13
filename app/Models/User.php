@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Timeline\Statuses;
+use App\Models\Timeline\Status;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -85,6 +85,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function statuses()
     {
-        return $this->hasMany(Statuses::class);
+        return $this->hasMany(Status::class);
     }
 }

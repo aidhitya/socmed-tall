@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Status;
 
-use App\Models\Timeline\Statuses;
+use App\Models\Timeline\Status;
 use Livewire\Component;
 
 class Index extends Component
@@ -23,7 +23,7 @@ class Index extends Component
     public function render()
     {
         $ids = auth()->user()->follows()->pluck('id')->push(auth()->id());
-        $statuses = Statuses::whereIn('user_id', $ids)->with('user')->latest()->paginate($this->page);
+        $statuses = Status::whereIn('user_id', $ids)->with('user')->latest()->paginate($this->page);
 
         return view('livewire.status.index',[
             'statuses' => $statuses

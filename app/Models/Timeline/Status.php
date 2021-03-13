@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Statuses extends Model
+class Status extends Model
 {
     use HasFactory;
 
@@ -17,6 +17,11 @@ class Statuses extends Model
     public function getPublishedAttribute()
     {
         return $this->created_at->diffForHumans();
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'hash';
     }
 
     // <!-- Relationship -->
