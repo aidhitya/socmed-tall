@@ -21,7 +21,7 @@
                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                 @enderror
                 <div class="flex justify-end">
-                    <x-button.primary x-on:click="body: null" x-bind:disabled="disableSubmit" x-bind:class="{'disabled:opacity-50 pointer-events-none' : disableSubmit}">
+                    <x-button.primary x-on:click="body = null" x-bind:disabled="disableSubmit" x-bind:class="{'disabled:opacity-50 pointer-events-none' : disableSubmit}">
                         submit
                     </x-button.primary>
                 </div>
