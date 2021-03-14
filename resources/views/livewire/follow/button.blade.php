@@ -1,7 +1,7 @@
 <div>
     @if (auth()->check() && auth()->user()->is($user))
 
-        <a href="{{ route('setting.edit') }}" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring-indigo active:bg-indigo-700">
+        <a href="{{ route('setting.edit') }}" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-black transition duration-150 ease-in-out border border-gray-200 rounded-md shadow-md bg-gray-50 hover:bg-gray-100 focus:outline-none focus:border-gray-400 focus:ring-gray active:bg-gray-200">
             Edit Your Profile
         </a>
         

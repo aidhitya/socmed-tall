@@ -27,7 +27,7 @@
                         <div class="py-2 md:mr-4">
                             <button class="flex items-center px-4 focus:outline-none" x-on:click="dropdown = !dropdown">
                                 <div class="flex-shrink-0">
-                                    <img src="{{ auth()->user()->gravatar() }}" class="object-cover object-center w-8 rounded-lg h-18">
+                                    <img src="{{ auth()->user()->gravatar() }}" class="object-cover object-center w-10 h-10 rounded-full">
                                 </div>
                                 <div class="block px-2 text-white hover:text-gray-300">
                                     {{ auth()->user()->name }}
