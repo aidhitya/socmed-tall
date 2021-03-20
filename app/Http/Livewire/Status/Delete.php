@@ -8,23 +8,22 @@ use Livewire\Component;
 class Delete extends Component
 {
     public $status;
+    protected $listeners = [];
 
-    public function mount(Status $status)
+    public function mount($status)
     {
         $this->status = $status;
     }
 
+        
     /**
-     * subscribe model
+     * delete on index comp
      *
      * @return void
      */
     public function delete()
     {
-        $this->status->delete();
-        // $this->showSuccess = true;
-
-        return redirect(route('timeline'));
+        $this->emit('deleteStatus', $this->status->id);
     }
 
     public function render()

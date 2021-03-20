@@ -4,7 +4,7 @@
             <img src="{{ $status->user->gravatar() }}" alt="" class="object-cover object-center w-12 h-12 rounded-full">
         </div>
     </a>
-    <div class="w-full"  x-data="{statusDropdown : false, modalSuccess : @entangle('showSuccess')}">
+    <div class="w-full"  x-data="{statusDropdown : false}">
         <div class="flex justify-between">
             <div class="flex items-center">
                 <div class="flex ml-2 font-semibold">
@@ -28,16 +28,24 @@
                     </svg>
                 </button>
                 <div x-bind:class="{'hidden' : !statusDropdown}" class="absolute top-0 w-48 p-1 py-2 mt-8 bg-white rounded shadow right-5">
-                    <div class="" x-data="{deleteButton : false}">
+                    <div class="" x-data="{deleteButton : @entangle('deleteModal')}">
                         <a href="{{ route('status.edit', $status->hash) }}" class="block px-3 py-1 rounded hover:bg-gray-100">Edit Status</a>
-                        <button @click="deleteButton = !deleteButton" class="block w-full px-3 py-1 text-left rounded hover:bg-gray-100">Delete Status</button>
-                        <div x-bind:class="{'hidden' : !deleteButton}" class="block w-full h-full">
+                        <button @click="deleteButton = true" class="block w-full px-3 py-1 text-left rounded hover:bg-gray-100">Delete Status</button>
+                        <div x-show="deleteButton" class="block w-full h-full">
                             @livewire('status.delete', ['status' => $status])
                         </div>
                     </div>
                 </div>
 
-                <div x-show.transition.duration.300ms="modalSuccess" class="fixed top-0 left-0 flex items-center w-full h-full bg-gray-500 bg-opacity-50">
+                <div x-data="{modalSuccess: false}"
+                x-show.transition.duration.200ms="modalSuccess"
+                x-init="@this.on('deleted', () => {
+                    modalSuccess = true; 
+                    setTimeout(() => {
+                        modalSuccess = false
+                    }, 850)
+                })"
+                class="fixed top-0 left-0 flex items-center w-full h-full bg-gray-500 bg-opacity-50">
                     <x-modal class="px-20 bg-green-500">
                         <p class="font-bold text-center text-white animate-pulse text-9xl">&check;</p>
                         <p class="text-5xl font-bold text-center text-white">Status Deleted</p>

@@ -10,10 +10,16 @@ class Index extends Component
     public $page = 10, $status;
 
     protected $listeners = [
-        'statusAdded'
+        'statusAdded', 'deleteStatus'
     ];
 
     public function statusAdded($status) {}
+
+    public function deleteStatus($statusid)
+    {
+        Status::destroy($statusid);
+        $this->emit('deleteSuccess');
+    }
 
     public function loadMore()
     {

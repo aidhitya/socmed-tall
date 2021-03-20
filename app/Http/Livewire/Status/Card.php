@@ -7,19 +7,20 @@ use Livewire\Component;
 
 class Card extends Component
 {
-    public $status, $showSuccess = false;
+    public $status, $deleteModal = false;
 
-    protected $listeners = ['showModalSuccess'];
+    protected $listeners = ['deleteSuccess'];
     
     public function mount($status)
     {
         $this->status = $status;
     }
 
-    public function showModalSuccess($status)
+    public function deleteSuccess()
     {
-        // $st = Status::where('hash', $status)->first()->delete();
-        $this->showSuccess = true;
+        $this->status->fresh();
+        $this->deleteModal = false;
+        $this->emit('deleted');
     }
 
     public function render()
