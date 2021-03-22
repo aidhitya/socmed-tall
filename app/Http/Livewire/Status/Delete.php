@@ -10,7 +10,7 @@ class Delete extends Component
     public $status;
     protected $listeners = [];
 
-    public function mount($status)
+    public function mount(Status $status)
     {
         $this->status = $status;
     }
@@ -23,7 +23,8 @@ class Delete extends Component
      */
     public function delete()
     {
-        $this->emit('deleteStatus', $this->status->id);
+        $this->status->delete();
+        return redirect(route('timeline'));
     }
 
     public function render()

@@ -8,19 +8,10 @@ use Livewire\Component;
 class Card extends Component
 {
     public $status, $deleteModal = false;
-
-    protected $listeners = ['deleteSuccess'];
     
-    public function mount($status)
+    public function mount(Status $status)
     {
         $this->status = $status;
-    }
-
-    public function deleteSuccess()
-    {
-        $this->status->fresh();
-        $this->deleteModal = false;
-        $this->emit('deleted');
     }
 
     public function render()

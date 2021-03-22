@@ -31,7 +31,7 @@ class Create extends Component
         ]);
 
         $this->reset('body');
-        $this->emit('statusAdded', $status->id);
+        $this->emit('statusAdded', $status);
         
     }
 

@@ -1,7 +1,7 @@
 <div>
     @foreach ($statuses as $status)
         <div class="mb-5">
-            @livewire('status.card', ['status' => $status], key($status->id))
+            @livewire('status.card', ['status' => $status], key(time() . $status->id))
         </div>
     @endforeach
 
