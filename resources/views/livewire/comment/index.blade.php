@@ -63,6 +63,9 @@
                                     </a>
                                     @endauth
                                 </div>
+                                @auth
+                                    @livewire('comment.like', ['comment' => $comment], key(time() + 100 . $comment->id))
+                                @endauth
                             </div>
                         </div>
                     </div>

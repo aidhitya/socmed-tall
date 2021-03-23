@@ -5,10 +5,11 @@ namespace App\Models\Timeline;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Likeable;
 
 class Comment extends Model
 {
-    use HasFactory;
+    use HasFactory, Likeable;
 
     protected $fillable = [
         'hash', 'body', 'status_id', 'parent_id'

@@ -65,14 +65,9 @@
         </div>
 
         <div class="" x-data="{commentCard: false}">
-            <div class="flex justify-between mt-2 mr-2 -mx-4 text-sm text-gray-300 md:justify-start md:mr-0">
-                <div class="flex items-center md:mx-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path>
-                    </svg>
-                    100 Likes
-                </div>
-                <div class="ml-2 md:mx-4">
+            <div class="flex items-center justify-between mt-2 mr-2 -mx-4 text-sm text-gray-300 md:justify-start md:mr-0">
+                <div class="flex ml-2 md:mx-4">
+                    @livewire('status.like',['status' => $status], key(time() + time() . $status->id))
                     @auth
                     <button x-bind:class="{'text-blue-400' : commentCard}" class="text-blue-400 focus:outline-none focus:ring-0" @click=" commentCard = !commentCard ">
                         <div class="flex items-center">
