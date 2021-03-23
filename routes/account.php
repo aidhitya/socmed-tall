@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Livewire\Account\Edit as editProfile;
 use App\Http\Livewire\Account\Show as showProfile;
@@ -24,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('timeline', TimelineController::class)->name('timeline');
     Route::get('settings', editProfile::class)->name('setting.edit');
     Route::get('status/{status:hash}/edit', statusEdit::class)->name('status.edit');
+    Route::get('user/{identifier}/{follow}',FollowController::class)->name('statistic');
 });
 
 Route::get('user/{identifier}', showProfile::class)->name('account.profile');
