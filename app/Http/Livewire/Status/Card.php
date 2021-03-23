@@ -7,11 +7,13 @@ use Livewire\Component;
 
 class Card extends Component
 {
-    public $status, $deleteModal = false;
+    public $status, $deleteModal = false, $comment;
     
     public function mount(Status $status)
     {
-        $this->status = $status;
+        $this->status = $status->load(['comments' => function($q){
+            $q->latest();
+        }]);
     }
 
     public function render()

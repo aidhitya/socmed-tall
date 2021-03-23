@@ -6,25 +6,17 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Status extends Model
+class Comment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'hash', 'body'
+        'hash', 'body', 'status_id', 'parent_id'
     ];
-
-    protected $with = ['user'];
-    protected $withCount = ['comments'];
 
     public function getPublishedAttribute()
     {
         return $this->created_at->diffForHumans();
-    }
-
-    public function getRouteKeyName()
-    {
-        return 'hash';
     }
 
     // <!-- Relationship -->
@@ -34,8 +26,18 @@ class Status extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function comments()
+    public function status()
     {
-        return $this->hasMany(Comment::class);
+        return $this->belongsTo(Status::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(self::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(self::class, 'parent_id');
     }
 }

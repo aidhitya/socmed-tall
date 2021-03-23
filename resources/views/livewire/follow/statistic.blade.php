@@ -1,5 +1,8 @@
 <div class="bg-gray-300 border-t border-gray-300">
-    <div class="flex justify-center">
+    <div class="flex items-center justify-center md:justify-between md:mx-4">
+        <div class="hidden text-3xl font-bold md:ml-10 md:block">
+            Your Tweets
+        </div>
         <div class="flex w-full md:w-5/12">
             <div class="flex-1 py-2 text-center border-r border-gray-400">
                 <div class="text-gray-500">

@@ -36,7 +36,7 @@
     @livewire('follow.statistic', ['user' => $user])
     <div class="container">
         <div class="flex">
-            <div class="p-3 px-3 mx-auto border-l border-r border-gray-200 shadow-sm md:py-5">
+            <div class="p-3 px-3 border-l border-r border-gray-200 shadow-sm md:py-5">
                 @foreach ($statuses as $status)
                     @livewire('status.card', ['status' => $status], key($status->id))
                 @endforeach

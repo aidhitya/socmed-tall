@@ -10,10 +10,10 @@
                 <div class="flex ml-2 font-semibold">
                     <a href="{{ route('account.profile', $status->user->UsernameOrHash) }}" class="flex items-center">
                         <div class="hover:underline">
-                            {{ $status->user->name }} 
+                            {{ Str::limit($status->user->name, 15, '...') }} 
                         </div>
                         <div class="ml-1 text-sm text-gray-400 hover:text-gray-500">
-                            {{ '@'.$status->user->UsernameOrHash }}
+                            {{ '@'.Str::limit($status->user->UsernameOrHash, 15, '...') }}
                         </div>
                     </a>
                 </div>
@@ -28,7 +28,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div x-bind:class="{'hidden' : !statusDropdown}" class="absolute w-48 p-1 py-2 bg-white rounded shadow @if (\Request::route()->getName() == 'timeline') right-4 md:ml-24 md:left-96 @endif">
+                    <div x-bind:class="{'hidden' : !statusDropdown}" class="absolute w-48 p-1 py-2 bg-white rounded shadow right-4 md:ml-24 md:left-96">
                         <div class="" x-data="{deleteButton : false}">
                             <a href="{{ route('status.edit', $status->hash) }}" class="block px-3 py-1 rounded hover:bg-gray-100">Edit Status</a>
                             <button @click="deleteButton = true" class="block w-full px-3 py-1 text-left rounded hover:bg-gray-100">Delete Status</button>
@@ -73,14 +73,25 @@
                     100 Likes
                 </div>
                 <div class="ml-2 md:mx-4">
+                    @auth
                     <button x-bind:class="{'text-blue-400' : commentCard}" class="text-blue-400 focus:outline-none focus:ring-0" @click=" commentCard = !commentCard ">
                         <div class="flex items-center">
                             <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
                             </svg>
-                            23 Comments
+                            {{ $status->comments->count() }} {{ Str::plural('Comment', $status->comments->count()) }}
                         </div>
                     </button>
+                    @else
+                    <a href="{{ route('login') }}" class="focus:outline-none focus:ring-0">
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
+                            </svg>
+                            {{ $status->comments->count() }} {{ Str::plural('Comment', $status->comments->count()) }}
+                        </div>
+                    </a>
+                    @endauth
                 </div>
                 <div class="flex items-center ml-2 md:mx-4">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -88,9 +99,11 @@
                     </svg>
                 </div>
             </div>
-            <div x-show="commentCard">
-                @livewire('comment.create')
-            </div>
+            @auth
+                <div x-show="commentCard">
+                    @livewire('comment.create', ['status' => $status])
+                </div>
+            @endauth
         </div>
     </div>
 </div>
